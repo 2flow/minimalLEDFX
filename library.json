@@ -1,0 +1,40 @@
+{
+  "name": "Minimal Animation Library",
+  "keywords": "LED",
+  "description": "Animation Library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2flow/minimalLEDFX.git"
+  },
+  "authors": [
+    {
+      "name": "Florian Wimmer",
+      "email": "flo@wimmer.kiwi",
+      "maintainer": true
+    }
+  ],
+  "dependencies": [],
+  "exports": {
+    "include": [
+      "include/*.h",
+      "src/*.cpp"
+    ],
+    "exclude": [
+      ".travis.yml",
+      ".gitignore",
+      "lib/*",
+      "test/*",
+      ".vscode/*",
+      "include/README",
+      "include/AnimationTimingTest.h",
+      "src/AnimationTimingTest.cpp",
+      "src/README",
+      "README.md",
+      "src/main.cpp",
+      "*main.cpp"
+    ]
+  },
+  "version": "0.0.1",
+  "frameworks": "*",
+  "platforms": "*"
+}
