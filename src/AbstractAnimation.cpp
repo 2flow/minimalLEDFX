@@ -19,7 +19,9 @@ void AbstractAnimation::nextFrame(){
         ready = false;
         currentStep++;
     }else{
-        //Serial.println("Done with animation");
+        if(animationObserver != nullptr){
+            animationObserver->animationEnd(this);
+        }
     }
 }
 
@@ -43,3 +45,14 @@ int AbstractAnimation::getMaxSteps() const{
     return maxSteps;
 }
 
+void AbstractAnimation::addObserver(IAnimationObserver *observer) {
+    if(animationObserver != nullptr){
+        animationObserver->addObserver(observer);
+    }
+}
+
+void AbstractAnimation::removeObserver(IAnimationObserver *observer) {
+    if(animationObserver != nullptr){
+        animationObserver->removeObserver(observer);
+    }
+}

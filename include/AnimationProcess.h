@@ -21,8 +21,6 @@ public:
     void setAnimation(IAnimation * animation);
     void setLedSink(ILedSink *sink);
 
-    void addObserver(IAnimationObserver *observer);
-    void removeObserver(IAnimationObserver *observer);
 
 private:
     const int msPerFrame;
@@ -32,10 +30,6 @@ private:
     bool needsDraw = true;
     IAnimation *currentAnimation = nullptr;
     ILedSink *ledSink = nullptr;
-
-    StaticObserversStore<1> singleObserver;
-    AbstractAnimationObservers *animationObserver = &singleObserver;
-
 
     int startIdx;
     int length;

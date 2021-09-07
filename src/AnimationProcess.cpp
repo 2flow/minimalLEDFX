@@ -73,14 +73,4 @@ void AnimationProcess::setLedSink(ILedSink *sink) {
     this->ledSink = sink;
 }
 
-void AnimationProcess::addObserver(IAnimationObserver *observer) {
-    if(animationObserver != nullptr){
-        animationObserver->addObserver(observer);
-    }
-}
 
-void AnimationProcess::removeObserver(IAnimationObserver *observer) {
-    if(animationObserver != nullptr){
-        animationObserver->removeObserver(observer);
-    }
-}

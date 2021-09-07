@@ -7,6 +7,8 @@
 
 
 #include "IAnimation.h"
+#include "IAnimationObserver.h"
+#include "StaticObserversStore.h"
 
 class AbstractAnimation : public IAnimation{
 public:
@@ -18,11 +20,20 @@ public:
 
     bool isReady() const override;
 
+
+    void addObserver(IAnimationObserver *observer);
+    void removeObserver(IAnimationObserver *observer);
+
 protected:
     int getCurrentStep() const;
     int getMaxSteps() const;
 
     virtual bool onCalculate() = 0;
+
+
+
+    StaticObserversStore<1> singleObserver;
+    AbstractAnimationObservers *animationObserver = &singleObserver;
 
 private:
     int currentStep = 0;
