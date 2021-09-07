@@ -12,11 +12,6 @@ set(CMAKE_CXX_COMPILER_WORKS 1)
 
 project("MinimalLEDFx" C CXX)
 
-file(GLOB TEST_SRC CONFIGURE_DEPENDS "src/*.cpp")
-
-add_executable("test" "test/main.cpp" ${TEST_SRC})
-
-#[[
 include(CMakeListsPrivate.txt)
 
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/CMakeListsUser.txt)
@@ -36,4 +31,3 @@ add_custom_target(
 )
 
 add_executable(Z_DUMMY_TARGET ${SRC_LIST})
-]]

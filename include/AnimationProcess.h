@@ -8,6 +8,8 @@
 #include "IAnimationProcess.h"
 #include "IAnimation.h"
 #include "ILedSink.h"
+#include "IAnimationObserver.h"
+#include "StaticObserversStore.h"
 
 class AnimationProcess : public IAnimationProcess{
 public:
@@ -19,6 +21,9 @@ public:
     void setAnimation(IAnimation * animation);
     void setLedSink(ILedSink *sink);
 
+    void addObserver(IAnimationObserver *observer);
+    void removeObserver(IAnimationObserver *observer);
+
 private:
     const int msPerFrame;
     const int fps;
@@ -27,6 +32,10 @@ private:
     bool needsDraw = true;
     IAnimation *currentAnimation = nullptr;
     ILedSink *ledSink = nullptr;
+
+    StaticObserversStore<1> singleObserver;
+    AbstractAnimationObservers *animationObserver = &singleObserver;
+
 
     int startIdx;
     int length;

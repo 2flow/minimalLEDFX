@@ -3,7 +3,6 @@
 //
 
 #include "AbstractAnimation.h"
-#include "Arduino.h"
 
 AbstractAnimation::AbstractAnimation(int maxSteps)
         : maxSteps{maxSteps}
@@ -20,7 +19,7 @@ void AbstractAnimation::nextFrame(){
         ready = false;
         currentStep++;
     }else{
-        Serial.println("Done with animation");
+        //Serial.println("Done with animation");
     }
 }
 
