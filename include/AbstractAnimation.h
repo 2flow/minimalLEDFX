@@ -33,7 +33,7 @@ protected:
 
 
     StaticObserversStore<1> singleObserver;
-    AbstractAnimationObservers *animationObserver = &singleObserver;
+    AbstractAnimationObservers *animationObserver = nullptr;
 
 private:
     int currentStep = 0;

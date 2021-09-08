@@ -7,6 +7,7 @@
 AbstractAnimation::AbstractAnimation(int maxSteps)
         : maxSteps{maxSteps}
 {
+    animationObserver = &this->singleObserver;
 }
 
 void AbstractAnimation::reset(){

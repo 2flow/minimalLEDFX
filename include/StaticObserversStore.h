@@ -2,8 +2,8 @@
 // Created by f.wimmer on 06.09.2021.
 //
 
-#ifndef MINIMALLEDFX_REPEATOBSERVER_H
-#define MINIMALLEDFX_REPEATOBSERVER_H
+#ifndef MINIMALLEDFX_STATICOBSERVERSTORE_H
+#define MINIMALLEDFX_STATICOBSERVERSTORE_H
 #include "IAnimationObserver.h"
 
 template <int OBSERVERS_COUNT>
@@ -62,4 +62,4 @@ void StaticObserversStore<OBSERVERS_COUNT>::animationStart(IAnimation *animation
         observers[i]->animationStart(animation);
     }
 }
-#endif //MINIMALLEDFX_REPEATOBSERVER_H
+#endif //MINIMALLEDFX_STATICOBSERVERSTORE_H
