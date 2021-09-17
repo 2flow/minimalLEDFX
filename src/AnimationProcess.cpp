@@ -73,4 +73,8 @@ void AnimationProcess::setLedSink(ILedSink *sink) {
     this->ledSink = sink;
 }
 
+IAnimation *AnimationProcess::getAnimation() const {
+    return currentAnimation;
+}
+
 

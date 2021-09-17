@@ -21,6 +21,8 @@ public:
     void setAnimation(IAnimation * animation);
     void setLedSink(ILedSink *sink);
 
+    IAnimation* getAnimation() const;
+
 
 private:
     const int msPerFrame;
