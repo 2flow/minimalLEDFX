@@ -20,9 +20,7 @@ void AbstractAnimation::nextFrame(){
         ready = false;
         currentStep++;
     }else{
-        if(animationObserver != nullptr){
-            animationObserver->animationEnd(this);
-        }
+        onFinished();
     }
 }
 
@@ -55,5 +53,11 @@ void AbstractAnimation::addObserver(IAnimationObserver *observer) {
 void AbstractAnimation::removeObserver(IAnimationObserver *observer) {
     if(animationObserver != nullptr){
         animationObserver->removeObserver(observer);
+    }
+}
+
+void AbstractAnimation::onFinished() {
+    if(animationObserver != nullptr){
+        animationObserver->animationEnd(this);
     }
 }

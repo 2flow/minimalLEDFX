@@ -29,6 +29,7 @@ protected:
     int getMaxSteps() const;
 
     virtual bool onCalculate() = 0;
+    virtual void onFinished();
 
 
 
