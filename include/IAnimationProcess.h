@@ -6,7 +6,6 @@
 #define UNTITLED_IANIMATIONPROCESS_H
 class IAnimationProcess{
 public:
-    virtual void milliSecondTick() = 0;
     virtual void process() = 0;
     virtual void reset() = 0;
 };
