@@ -12,7 +12,12 @@
 
 class IFrameManager {
 public:
+    virtual void millisecondTick() = 0;
 
+    virtual void setLedSink(IDisplayTarget* sink) = 0;
+    virtual void addListener(IFrameListener* listener) = 0;
+
+    virtual void loop() = 0;
     virtual ~IFrameManager() = default;
 };
 
@@ -20,12 +25,12 @@ template <int MAX_FRAMELISTENER>
 class FrameManager : public IFrameManager {
 public:
     FrameManager(int fps); // msPerFrame{1000 / fps},
-    void millisecondTick();
+    void millisecondTick() override;
 
-    void setLedSink(IDisplayTarget* sink);
-    void addListener(IFrameListener* listener);
+    void setLedSink(IDisplayTarget* sink) override;
+    void addListener(IFrameListener* listener) override;
 
-    void loop();
+    void loop() override;
 private:
 
     const int mMsPerFrame{0};

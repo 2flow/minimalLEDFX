@@ -12,7 +12,7 @@
 #include "StaticObserversStore.h"
 #include "IFrameListener.h"
 
-class AnimationProcess : public IAnimationProcess, IFrameListener{
+class AnimationProcess : public IAnimationProcess, public IFrameListener{
 public:
     AnimationProcess(int startIdx, int length);
     void process() override;
