@@ -3,7 +3,7 @@
 //
 #include "BlinkAnimation.h"
 
-BlinkAnimation::BlinkAnimation(LED oncolor, int _stepsCount) : AbstractAnimation{_stepsCount}, oncolor{oncolor}
+BlinkAnimation::BlinkAnimation(LED oncolor, int _stepsCount) : AbstractAnimation{_stepsCount}, mOnColor{oncolor}
 {
     stepsCount = _stepsCount;
 }
@@ -18,11 +18,11 @@ bool BlinkAnimation::onCalculate()
 
     if (getCurrentStep() > (stepsCount / 2) && getCurrentStep() <= stepsCount)
     {
-        currentcolor = {0, 0, 0};
+        mCurrentColor = {0, 0, 0};
     }
     else
     {
-        currentcolor = oncolor;
+        mCurrentColor = mOnColor;
     }
 
     // currentValue = valueSteps * static_cast<float>(getCurrentStep());
@@ -42,7 +42,7 @@ bool BlinkAnimation::onCalculate()
 
 LED BlinkAnimation::getValueAt(int i) const
 {
-    return currentcolor;
+    return mCurrentColor;
 }
 
 

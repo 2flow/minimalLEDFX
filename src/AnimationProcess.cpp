@@ -47,6 +47,10 @@ void AnimationProcess::process() {
                 mState = TState::WaitForNextFrame;
                 break;
             }
+            case TState::Paused:{
+                // paused do nothing
+                break;
+            }
             default: {
                 if (mRequestCalculate) {
                     mState = TState::Calculate;
@@ -54,25 +58,6 @@ void AnimationProcess::process() {
                 break;
             }
         }
-
-        /*if(currentAnimation->isReady()){
-            if(ledSink->getType() == IMMEDIATE){
-                drawToSink();
-            }
-        }else if(!currentAnimation->isReady()){
-
-            if (needsDraw){
-                // TODO log something because the timing is not correct
-            }
-
-            currentAnimation->calculate();
-
-            // TODO move to state machine, (needs to be created first)
-            // draw to buffered sink if ready after the calculation
-            if (currentAnimation->isReady() && (ledSink->getType() == BUFFERED)){
-                drawToSink();
-            }
-        }*/
     }
 }
 
@@ -100,11 +85,20 @@ void AnimationProcess::drawFrame() {
 }
 
 void AnimationProcess::nextFrame() {
-    if(currentAnimation != nullptr){
+    if((currentAnimation != nullptr) &&
+        (mState == TState::Paused)){
         currentAnimation->nextFrame();
     }
 
     mRequestCalculate = true;
+}
+
+void AnimationProcess::pause() {
+    mState = TState::Paused;
+}
+
+void AnimationProcess::play() {
+    mState = TState::Calculate;
 }
 
 

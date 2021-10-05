@@ -8,7 +8,7 @@
 
 class IDisplayTarget {
 public:
-    virtual void show();
+    virtual void show() = 0;
 
     virtual ~IDisplayTarget() = default;
 };

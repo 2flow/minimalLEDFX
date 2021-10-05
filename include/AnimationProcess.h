@@ -17,6 +17,8 @@ public:
     AnimationProcess(int startIdx, int length);
     void process() override;
     void reset() override;
+    void pause() override;
+    void play() override;
 
     void drawFrame() override;
     void nextFrame() override;
@@ -33,11 +35,11 @@ private:
         WaitForDraw,
         Draw,
         WaitForNextFrame,
+        Paused,
     };
 
     IAnimation *currentAnimation = nullptr;
     ILedSink *ledSink = nullptr;
-
     int startIdx;
     int length;
 

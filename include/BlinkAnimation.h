@@ -18,8 +18,8 @@ protected:
     bool onCalculate() override;
 
 private:
-    LED currentcolor;
-    LED oncolor;
+    LED mCurrentColor;
+    LED mOnColor;
     int stepsCount;
 };
 #endif //MINIMALLEDFX_BLINKANIMATION_H

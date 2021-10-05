@@ -17,6 +17,7 @@ public:
     void setFromColor(LED from);
     void setToColor(LED color);
 
+    LED getToColor() const;
 protected:
     void onConfigure(int stepsCount);
     bool onCalculate() override;

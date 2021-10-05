@@ -20,7 +20,6 @@ public:
 
     bool isReady() const override;
 
-
     void addObserver(IAnimationObserver *observer);
     void removeObserver(IAnimationObserver *observer);
 
@@ -31,8 +30,6 @@ protected:
     virtual bool onCalculate() = 0;
     virtual void onFinished();
 
-
-
     StaticObserversStore<1> singleObserver;
     AbstractAnimationObservers *animationObserver = nullptr;
 
@@ -40,6 +37,7 @@ private:
     int currentStep = 0;
     int maxSteps = 0;
     bool ready = false;
+
 };
 
 #endif //UNTITLED_ABSTRACTANIMATION_H

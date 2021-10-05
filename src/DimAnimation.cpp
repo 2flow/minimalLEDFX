@@ -49,3 +49,7 @@ void DimAnimation::setFromColor(LED from) {
 void DimAnimation::setToColor(LED color) {
     this->to = color;
 }
+
+LED DimAnimation::getToColor() const {
+    return this->to;
+}
