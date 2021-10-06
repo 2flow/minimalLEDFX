@@ -78,3 +78,9 @@ bool AbstractAnimation::getReady() const {
 void AbstractAnimation::synchronizeWith(AnimationSynchronizer *synchronizer) {
     mSynchronizer = synchronizer;
 }
+
+void AbstractAnimation::cancelSynchronization() const {
+    if(mSynchronizer != nullptr){
+        mSynchronizer->removeAsSource(this);
+    }
+}

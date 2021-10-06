@@ -5,31 +5,31 @@
 #include "AbstractAnimation.h"
 #include "AnimationSynchronizer.h"
 
-int AnimationSynchronizer::getCurrentStep(AbstractAnimation *self) {
-    checkMaster(self);
+int AnimationSynchronizer::getCurrentStep(AbstractAnimation *pSelf) {
+    checkMaster(pSelf);
     return mMasterAnimation->getCurrentStep();
 }
 
-void AnimationSynchronizer::checkMaster(AbstractAnimation *self) {
+void AnimationSynchronizer::checkMaster(AbstractAnimation *pSelf) {
     if(mMasterAnimation == nullptr){
-        mMasterAnimation = self;
+        mMasterAnimation = pSelf;
     }
 }
 
-int AnimationSynchronizer::getMaxSteps(AbstractAnimation *self) {
-    checkMaster(self);
+int AnimationSynchronizer::getMaxSteps(AbstractAnimation *pSelf) {
+    checkMaster(pSelf);
 
     return mMasterAnimation->getMaxSteps();
 }
 
-bool AnimationSynchronizer::getReady(AbstractAnimation *self) {
-    checkMaster(self);
+bool AnimationSynchronizer::getReady(AbstractAnimation *pSelf) {
+    checkMaster(pSelf);
     return mMasterAnimation->getReady();
 }
 
-bool AnimationSynchronizer::reset(AbstractAnimation *self) {
-    checkMaster(self);
-    if(mMasterAnimation == self){
+bool AnimationSynchronizer::reset(AbstractAnimation *pSelf) {
+    checkMaster(pSelf);
+    if(mMasterAnimation == pSelf){
         mReset = true;
         return true;
     }
@@ -41,9 +41,15 @@ bool AnimationSynchronizer::isReset() const {
     return mReset;
 }
 
-void AnimationSynchronizer::quitReset(AbstractAnimation *self) {
-    checkMaster(self);
-    if(mMasterAnimation == self){
+void AnimationSynchronizer::quitReset(AbstractAnimation *pSelf) {
+    checkMaster(pSelf);
+    if(mMasterAnimation == pSelf){
         mReset = false;
+    }
+}
+
+void AnimationSynchronizer::removeAsSource(const AbstractAnimation *pSelf) {
+    if(mMasterAnimation == pSelf){
+        mMasterAnimation = nullptr;
     }
 }

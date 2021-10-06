@@ -29,6 +29,7 @@ public:
     bool getReady() const;
 
     void synchronizeWith(AnimationSynchronizer* synchronizer);
+    void cancelSynchronization() const;
 
 protected:
 
