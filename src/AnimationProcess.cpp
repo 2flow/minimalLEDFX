@@ -86,7 +86,7 @@ void AnimationProcess::drawFrame() {
 
 void AnimationProcess::nextFrame() {
     if((currentAnimation != nullptr) &&
-        (mState == TState::Paused)){
+        (mState != TState::Paused)){
         currentAnimation->nextFrame();
     }
 
