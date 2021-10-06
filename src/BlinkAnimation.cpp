@@ -45,4 +45,8 @@ LED BlinkAnimation::getValueAt(int i) const
     return mCurrentColor;
 }
 
+void BlinkAnimation::setColor(LED color) {
+    mOnColor = color;
+}
+
 

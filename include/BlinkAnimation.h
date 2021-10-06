@@ -14,6 +14,8 @@ public:
     void reset() override;
     LED getValueAt(int i) const override;
 
+    void setColor(LED color);
+
 protected:
     bool onCalculate() override;
 
