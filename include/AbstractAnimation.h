@@ -9,6 +9,7 @@
 #include "IAnimation.h"
 #include "IAnimationObserver.h"
 #include "StaticObserversStore.h"
+#include "AnimationSynchronizer.h"
 
 class AbstractAnimation : public IAnimation{
 public:
@@ -23,9 +24,13 @@ public:
     void addObserver(IAnimationObserver *observer);
     void removeObserver(IAnimationObserver *observer);
 
-protected:
     int getCurrentStep() const;
     int getMaxSteps() const;
+    bool getReady() const;
+
+    void synchronizeWith(AnimationSynchronizer* synchronizer);
+
+protected:
 
     virtual bool onCalculate() = 0;
     virtual void onFinished();
@@ -34,9 +39,11 @@ protected:
     AbstractAnimationObservers *animationObserver = nullptr;
 
 private:
-    int currentStep = 0;
-    int maxSteps = 0;
-    bool ready = false;
+    int mCurrentStep = 0;
+    int mMaxSteps = 0;
+    bool mReady = false;
+
+    AnimationSynchronizer* mSynchronizer = nullptr;
 
 };
 

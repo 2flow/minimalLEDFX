@@ -5,43 +5,52 @@
 #include "AbstractAnimation.h"
 
 AbstractAnimation::AbstractAnimation(int maxSteps)
-        : maxSteps{maxSteps}
+        : mMaxSteps{maxSteps}
 {
     animationObserver = &this->singleObserver;
 }
 
 void AbstractAnimation::reset(){
-    currentStep = 0;
-    ready = false;
+    mCurrentStep = 0;
+    mReady = false;
 }
 
 void AbstractAnimation::nextFrame(){
-    if (currentStep < maxSteps) {
-        ready = false;
-        currentStep++;
+    if (mCurrentStep < mMaxSteps) {
+        mReady = false;
+        mCurrentStep++;
     }else{
         onFinished();
     }
 }
 
 bool AbstractAnimation::calculate(){
-    if (!ready){
-        ready = onCalculate();
+    if(mSynchronizer != nullptr){
+        if((mCurrentStep != mSynchronizer->getCurrentStep(this)) ||
+            (mMaxSteps != mSynchronizer->getMaxSteps(this))) {
+            mCurrentStep = mSynchronizer->getCurrentStep(this);
+            mMaxSteps = mSynchronizer->getMaxSteps(this);
+            mReady = false;
+        }
     }
 
-    return ready;
+    if (!mReady){
+        mReady = onCalculate();
+    }
+
+    return mReady;
 }
 
 bool AbstractAnimation::isReady() const{
-    return ready;
+    return mReady;
 }
 
 int AbstractAnimation::getCurrentStep() const{
-    return currentStep;
+    return mCurrentStep;
 }
 
 int AbstractAnimation::getMaxSteps() const{
-    return maxSteps;
+    return mMaxSteps;
 }
 
 void AbstractAnimation::addObserver(IAnimationObserver *observer) {
@@ -60,4 +69,12 @@ void AbstractAnimation::onFinished() {
     if(animationObserver != nullptr){
         animationObserver->animationEnd(this);
     }
+}
+
+bool AbstractAnimation::getReady() const {
+    return mReady;
+}
+
+void AbstractAnimation::synchronizeWith(AnimationSynchronizer *synchronizer) {
+    mSynchronizer = synchronizer;
 }
