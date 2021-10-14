@@ -40,7 +40,7 @@ bool BlinkAnimation::onCalculate()
     return true;
 }
 
-LED BlinkAnimation::getValueAt(int i) const
+LED BlinkAnimation::onGetValueAt(int i) const
 {
     return mCurrentColor;
 }

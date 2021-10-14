@@ -12,12 +12,12 @@ public:
     BlinkAnimation(LED oncolor, int stepsCount);
 
     void reset() override;
-    LED getValueAt(int i) const override;
 
     void setColor(LED color);
 
 protected:
     bool onCalculate() override;
+    LED onGetValueAt(int i) const override;
 
 private:
     LED mCurrentColor;

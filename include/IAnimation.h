@@ -4,7 +4,8 @@
 
 #ifndef UNTITLED_IANIMATION_H
 #define UNTITLED_IANIMATION_H
-#include <stdint.h>
+#include <cstdint>
+#include <cstddef>
 #include "LED.h"
 
 class IAnimation{
@@ -17,6 +18,8 @@ public:
     virtual void nextFrame() = 0;
     virtual void reset() = 0;
     virtual bool isReady() const = 0;
+
+    virtual void setLedCount(size_t ledCount) = 0;
 
     virtual LED getValueAt(int i) const = 0;
 };

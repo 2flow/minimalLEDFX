@@ -8,7 +8,7 @@ bool TransitionAnimation::onCalculate() {
     return false;
 }
 
-LED TransitionAnimation::getValueAt(int i) const {
+LED TransitionAnimation::onGetValueAt(int i) const {
     return LED();
 }
 

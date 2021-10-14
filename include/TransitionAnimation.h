@@ -9,11 +9,12 @@
 
 class TransitionAnimation : public AbstractAnimation {
 public:
-    LED getValueAt(int i) const override;
+
     void reset(bool resetToAnimation);
 
 protected:
     bool onCalculate() override;
+    LED onGetValueAt(int i) const override;
 
     void reset() override;
 

@@ -12,6 +12,7 @@ AnimationProcess::AnimationProcess(int startIdx, int length) {
 
 void AnimationProcess::setAnimation(IAnimation *animation) {
     this->currentAnimation = animation;
+    animation->setLedCount(this->length);
 }
 
 

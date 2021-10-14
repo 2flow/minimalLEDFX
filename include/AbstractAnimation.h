@@ -5,11 +5,12 @@
 #ifndef UNTITLED_ABSTRACTANIMATION_H
 #define UNTITLED_ABSTRACTANIMATION_H
 
-
+#include <cstddef>
 #include "IAnimation.h"
 #include "IAnimationObserver.h"
 #include "StaticObserversStore.h"
 #include "AnimationSynchronizer.h"
+#include "LED.h"
 
 class AbstractAnimation : public IAnimation{
 public:
@@ -28,13 +29,22 @@ public:
     int getMaxSteps() const;
     bool getReady() const;
 
+    bool isReversed() const;
+    void setReversed(bool isReversed);
+
+    void setLedCount(size_t count) override;
+
     void synchronizeWith(AnimationSynchronizer* synchronizer);
     void cancelSynchronization() const;
 
+
+    LED getValueAt(int i) const override;
 protected:
 
     virtual bool onCalculate() = 0;
     virtual void onFinished();
+
+    virtual LED onGetValueAt(int i) const = 0;
 
     StaticObserversStore<1> singleObserver;
     AbstractAnimationObservers *animationObserver = nullptr;
@@ -43,6 +53,9 @@ private:
     int mCurrentStep = 0;
     int mMaxSteps = 0;
     bool mReady = false;
+    bool mIsReversed = false;
+
+    size_t mLedCount = 0;
 
     AnimationSynchronizer* mSynchronizer = nullptr;
 

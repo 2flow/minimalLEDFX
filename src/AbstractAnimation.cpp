@@ -84,3 +84,30 @@ void AbstractAnimation::cancelSynchronization() const {
         mSynchronizer->removeAsSource(this);
     }
 }
+
+bool AbstractAnimation::isReversed() const {
+    return mIsReversed;
+}
+
+void AbstractAnimation::setReversed(bool isReversed) {
+    mIsReversed = isReversed;
+}
+
+void AbstractAnimation::setLedCount(size_t count) {
+    if(count != mLedCount){
+        mLedCount = count;
+        reset();
+    }
+}
+
+LED AbstractAnimation::getValueAt(int i) const {
+    if(mIsReversed){
+        if(i < mLedCount) {
+            i = mLedCount - 1 - i;
+        }else{
+            i = 0;
+        }
+    }
+
+    return onGetValueAt(i);
+}

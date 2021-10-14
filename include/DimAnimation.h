@@ -13,7 +13,6 @@ public:
     DimAnimation(LED from, LED to, int stepsCount);
     void reset() override;
 
-    LED getValueAt(int i) const override;
     void setFromColor(LED from);
     void setToColor(LED color);
 
@@ -21,6 +20,7 @@ public:
 protected:
     void onConfigure(int stepsCount);
     bool onCalculate() override;
+    LED onGetValueAt(int i) const override;
 
 private:
     float valueSteps = 0.0;

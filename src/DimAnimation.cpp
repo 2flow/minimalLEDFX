@@ -38,7 +38,7 @@ bool DimAnimation::onCalculate(){
     return true;
 }
 
-LED DimAnimation::getValueAt(int i) const{
+LED DimAnimation::onGetValueAt(int i) const{
     return current;
 }
 
