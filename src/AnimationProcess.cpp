@@ -81,7 +81,8 @@ IAnimation *AnimationProcess::getAnimation() const {
 
 void AnimationProcess::drawFrame() {
     if(mState == TState::WaitForDraw){
-        mState = TState::Draw;
+        drawToSink();
+        mState = TState::WaitForNextFrame;
     }
 }
 

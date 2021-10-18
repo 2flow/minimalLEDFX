@@ -4,7 +4,7 @@
 
 #include "AbstractAnimation.h"
 
-AbstractAnimation::AbstractAnimation(int maxSteps)
+AbstractAnimation::AbstractAnimation(size_t maxSteps)
         : mMaxSteps{maxSteps}
 {
     animationObserver = &this->singleObserver;
@@ -103,11 +103,19 @@ void AbstractAnimation::setLedCount(size_t count) {
 LED AbstractAnimation::getValueAt(int i) const {
     if(mIsReversed){
         if(i < mLedCount) {
-            i = mLedCount - 1 - i;
+            i = static_cast<int>(mLedCount) - 1 - i;
         }else{
             i = 0;
         }
     }
 
     return onGetValueAt(i);
+}
+
+size_t AbstractAnimation::getLedCount() const {
+    return mLedCount;
+}
+
+void AbstractAnimation::setMaxSteps(size_t steps) {
+    mMaxSteps = steps;
 }

@@ -14,7 +14,7 @@
 
 class AbstractAnimation : public IAnimation{
 public:
-    AbstractAnimation(int maxSteps);
+    AbstractAnimation(size_t maxSteps);
 
     void reset() override;
     void nextFrame() override;
@@ -33,10 +33,12 @@ public:
     void setReversed(bool isReversed);
 
     void setLedCount(size_t count) override;
+    size_t getLedCount() const;
 
     void synchronizeWith(AnimationSynchronizer* synchronizer);
     void cancelSynchronization() const;
 
+    void setMaxSteps(size_t steps);
 
     LED getValueAt(int i) const override;
 protected:
@@ -50,8 +52,8 @@ protected:
     AbstractAnimationObservers *animationObserver = nullptr;
 
 private:
-    int mCurrentStep = 0;
-    int mMaxSteps = 0;
+    size_t mCurrentStep = 0;
+    size_t mMaxSteps = 0;
     bool mReady = false;
     bool mIsReversed = false;
 

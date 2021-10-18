@@ -36,6 +36,7 @@ private:
     const int mMsPerFrame{0};
     const int mFPS{0};
     int mCurrentMsOfFrame = 1;
+    bool mIsNextFrame = false;
 
     IDisplayTarget* mLedSink = nullptr;
 
@@ -53,12 +54,13 @@ void FrameManager<MAX_FRAMELISTENER>::millisecondTick() {
     mCurrentMsOfFrame ++;
     if(mCurrentMsOfFrame >= mMsPerFrame){
         mCurrentMsOfFrame = 0;
+        mIsNextFrame = true;
     }
 }
 
 template<int MAX_FRAMELISTENER>
 void FrameManager<MAX_FRAMELISTENER>::loop() {
-    if(mCurrentMsOfFrame == 0){
+    if(mIsNextFrame){
         for(unsigned int i = 0; i < mListenerCount; i ++){
             auto listener = mListeners[i];
             listener->drawFrame();
@@ -67,6 +69,8 @@ void FrameManager<MAX_FRAMELISTENER>::loop() {
         if(mLedSink != nullptr) {
             mLedSink->show();
         }
+
+        mIsNextFrame = false;
     }
 }
 
