@@ -52,10 +52,19 @@ protected:
     AbstractAnimationObservers *animationObserver = nullptr;
 
 private:
+    enum class State{
+        Paused,
+        Running,
+        Finished
+    };
+
     size_t mCurrentStep = 0;
     size_t mMaxSteps = 0;
+    size_t mNextMaxSteps = 0;
     bool mReady = false;
     bool mIsReversed = false;
+
+    State mState = State::Running;
 
     size_t mLedCount = 0;
 

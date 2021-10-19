@@ -5,7 +5,7 @@
 #include "AbstractAnimation.h"
 
 AbstractAnimation::AbstractAnimation(size_t maxSteps)
-        : mMaxSteps{maxSteps}
+        : mMaxSteps{maxSteps}, mNextMaxSteps{maxSteps}
 {
     animationObserver = &this->singleObserver;
 }
@@ -13,14 +13,18 @@ AbstractAnimation::AbstractAnimation(size_t maxSteps)
 void AbstractAnimation::reset(){
     mCurrentStep = 0;
     mReady = false;
+    mMaxSteps = mNextMaxSteps;
+    mState = State::Running;
 }
 
 void AbstractAnimation::nextFrame(){
-    if (mCurrentStep < mMaxSteps) {
+    if ((mCurrentStep < mMaxSteps) && (mState == State::Running)) {
         mReady = false;
         mCurrentStep++;
-    }else{
+    }else if(mState == State::Running){
+        mMaxSteps = mNextMaxSteps;
         onFinished();
+        mState = State::Finished;
     }
 }
 
@@ -117,5 +121,5 @@ size_t AbstractAnimation::getLedCount() const {
 }
 
 void AbstractAnimation::setMaxSteps(size_t steps) {
-    mMaxSteps = steps;
+    mNextMaxSteps = steps;
 }
