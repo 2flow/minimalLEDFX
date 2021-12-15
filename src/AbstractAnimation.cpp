@@ -23,8 +23,8 @@ void AbstractAnimation::nextFrame(){
         mCurrentStep++;
     }else if(mState == State::Running){
         mMaxSteps = mNextMaxSteps;
-        onFinished();
         mState = State::Finished;
+        onFinished();
     }
 }
 
